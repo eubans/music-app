@@ -7,12 +7,17 @@ window.Alpine = Alpine;
 Alpine.start();
 
 import { createApp } from 'vue';
-import router from './router'
+import { createPinia } from 'pinia';
+import router from './router';
 
-import MainView from '@/components/MainView.vue';
+import MainView from '@/views/MainView.vue';
 
-createApp({
+const pinia = createPinia();
+const app = createApp({
     components: {
         MainView
     }
-}).use(router).mount('#app')
+});
+app.use(router);
+app.use(pinia);
+app.mount('#app');
